@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8">
+    
+      	mui.init();
+    </script>
+    <script src="js/js/jquery.min.js"></script>
+    <style type="text/css">
+    	body{
+    		background-color: white;
+    	}
+    	.mui-bar{
+    		background-color: black;
+    		height:40px;
+    	}
+    	.icon{
+    		font-size:25px;
+    		font-family:"宋体";
+    		font-weight: bold;
+    		margin: 3px;
+       	}
+    	.main{
+    		text-align:center;   
+    		background-color: white; 		
+       	}
+       	.line{
+       		margin: 5px;
+       	}
+    	#logo img{
+    		border-radius: 8px;
+    		height:45px;
+    		width:45px;
+    		margin-bottom: -10px;
+    		margin-left: -10px;  
+    		margin-right: 10px;  		
+    	}
+    	#logo {
+    		font-family: "楷体";
+    		margin: 10px;
+    		margin-bottom: 30px;
+    		margin-top: 40px;
+    		font-size: 35px;
+    		font-weight: bold;    	
+    	}
+    	#search{
+    		margin-bottom: 20px;
+    		padding-left:30px;
+    		padding-right:30px;
+    	}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	   <a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible"></a>
+	</header>
+	<div class="mui-content main" >
+		<div id="logo">
+			<a class="navbar-brand">
+			<img class="mui-media-object" src="img/logo.png" >
+				</a>
+				<span>殆知阁</span>
+		</div>
+		<div id="search">
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-speech mui-input-clear" placeholder="搜索" >
+			</div>
+		</div>
+		<div class="line">
+			<button class="mui-btn-primery icon">易</button>
+			<button class="mui-btn-primery icon">儒</button>
+			<button class="mui-btn-primery icon">道</button>
+		</div>
+		<div class="line">
+			<button class="mui-btn-primery icon">佛</button>
+			<button class="mui-btn-primery icon">子</button>
+			<button class="mui-btn-primery icon">史</button>
+		</div>
+		<div class="line">
+			<button class="mui-btn-primery icon">集</button>
+			<button class="mui-btn-primery icon">医</button>
+		</div>
+		<div class="line">			
+			<button class="mui-btn-primery icon">艺</button>
+			<button class="mui-btn-primery icon">诗</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var menu = null,
+			main = null;
+		var showMenu = false;
+		mui.plusReady(function(){
+			plus.screen.lockOrientation("portrait-primary");
+				main = plus.webview.currentWebview();
+				main.addEventListener('maskClick', closeMenu);
+			setTimeout(function() {
+					menu = mui.preload({
+						id: 'index-menu',
+						url: 'index-menu.html',
+						styles: {
+							left: 0,
+							width: '70%',
+							zindex: -1
+						},
+						show: {
+							aniShow: 'none'
+						}
+					});
+				}, 200);
+			var isInTransition = false;
+			/**
+			 * 显示侧滑菜单
+			 */
+			function openMenu() {
+				if (isInTransition) {
+					return;
+				}
+				if (!showMenu) {
+					//侧滑菜单处于隐藏状态，则立即显示出来；
+					isInTransition = true;
+					menu.setStyle({
+						mask: 'rgba(0,0,0,0)'
+					}); //menu设置透明遮罩防止点击
+					menu.show('none', 0, function() {
+						//主窗体开始侧滑并显示遮罩
+						main.setStyle({
+							mask: 'rgba(0,0,0,0.4)',
+							left: '70%',
+							transition: {
+								duration: 150
+							}
+						});
+						mui.later(function() {
+							isInTransition = false;
+							menu.setStyle({
+								mask: "none"
+							}); //移除menu的mask
+						}, 160);
+						showMenu = true;
+					});
+				}
+			};
+			/**
+			 * 关闭菜单
+			 */
+			function closeMenu() {
+				if (isInTransition) {
+					return;
+				}
+				if (showMenu) {
+					//关闭遮罩；
+					//主窗体开始侧滑；
+					isInTransition = true;
+					main.setStyle({
+						mask: 'none',
+						left: '0',
+						transition: {
+							duration: 200
+						}
+					});
+					showMenu = false;
+					//等动画结束后，隐藏菜单webview，节省资源；
+					mui.later(function() {
+						isInTransition = false;
+						menu.hide();
+					}, 300);
+				}
+			};
+			//点击左上角侧滑图标，打开侧滑菜单；
+			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
+				if (showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			});
+			//document.getElementsByClassName("icon").
+//			document.getElementById("link").onclick = function(){
+//				plus.webview.create("http://wenxian.fanren8.com/03/").show();
+//			};
+		});
+		//document.getElementsByClassName("icon").each()
+	</script>
+	
+</body>
+</html>
