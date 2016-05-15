@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/websql.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/reader.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					longtap: true, //默认为false
+				}
+			});
+		</script>
+		<style type="text/css">
+			#popover {
+				position: fixed;
+				top: 100px;
+				width: 60%;
+				margin: 20%;
+				padding: 5px;
+				font-size: 14px;
+			}
+			
+			.bookmark {
+				font-size: 20px;
+				color: #D6E9C6;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class='localLink link' mod='home'>
+				<span class='glyphicon glyphicon-home'></span>
+			</a>&nbsp; </header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-pull-right" href="#top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+		</nav>
+		<div class="mui-content">
+			<div id='list' name='top'></div>
+			<div id='page'></div>
+			<div id='prePage'></div>
+		</div>
+		<div id="popover" class="mui-popover">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a id="bookMark">书签</a></li>
+				<li class="mui-table-view-cell"><a id="bookNote">笔记</a></li>
+				<li class="mui-table-view-cell"><a id="closeList">关闭</a></li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		var pageIdx;
+		var sectionIdx;
+		var pagePath;
+		mui.plusReady(pageReady);
+		window.addEventListener('markRefresh', function() {
+			$(".bookmark").remove();
+			addMarks();
+		});
+	</script>
+
+</html>

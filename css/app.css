@@ -1,0 +1,84 @@
+.mui-bar{
+   		
+  		background-color: black;
+	}
+.mui-bar-nav{
+	font-size:15px;
+	height:36px;
+	padding:7px;
+	}
+.mui-bar-tab{  
+	font-size:14px;    		
+	height:30px;
+	padding:6px;
+}
+.mui-bar .mui-icon{
+	margin-top:-10px;
+	color:#AAA;
+}
+.mui-bar .glyphicon{
+	color:#AAA;
+	margin-right: 20px;
+}
+.mui-bar .link{
+	color: #AAA;
+}
+
+.mui-bar-nav{
+	white-space:nowrap;  
+}
+.mui-bar-nav .title{
+	color:white;
+	padding-left:20px;
+}
+.docStat{
+	text-align:center;
+	margin-bottom: 5px;
+	color:#888
+}
+#prePage{
+		display: none;
+	}
+.mui-content{
+    		background-color: white;
+    	}
+#search .searchMod{
+	margin-left:10px;
+	margin-right:5px;
+}
+.smHr hr{
+	height:3px;
+	padding:0;
+	margin:2px;
+}
+#search{
+	text-align: center;
+}
+#searchInput{
+	width:70%;
+	height:35px;
+	margin-right:-2px;
+	border-radius:5px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+#searchBtn{
+	height:35px;
+	margin-left: -2px;
+	border-radius:5px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+.removeTag{
+	color:#888;
+}
+.appIllustrate{
+	margin: 30px;
+	font-size:17px;
+}
+
+ p{
+ 	text-indent:2em;
+ 	line-height:150%;
+ 	color:black;
+ } 

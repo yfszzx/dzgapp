@@ -1,193 +1,188 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="js/mui.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link href="css/mui.css" rel="stylesheet"/>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" charset="utf-8">
-    
-      	mui.init();
-    </script>
-    <script src="js/js/jquery.min.js"></script>
-    <style type="text/css">
-    	body{
-    		background-color: white;
-    	}
-    	.mui-bar{
-    		background-color: black;
-    		height:40px;
-    	}
-    	.icon{
-    		font-size:25px;
-    		font-family:"宋体";
-    		font-weight: bold;
-    		margin: 3px;
-       	}
-    	.main{
-    		text-align:center;   
-    		background-color: white; 		
-       	}
-       	.line{
-       		margin: 5px;
-       	}
-    	#logo img{
-    		border-radius: 8px;
-    		height:45px;
-    		width:45px;
-    		margin-bottom: -10px;
-    		margin-left: -10px;  
-    		margin-right: 10px;  		
-    	}
-    	#logo {
-    		font-family: "楷体";
-    		margin: 10px;
-    		margin-bottom: 30px;
-    		margin-top: 40px;
-    		font-size: 35px;
-    		font-weight: bold;    	
-    	}
-    	#search{
-    		margin-bottom: 20px;
-    		padding-left:30px;
-    		padding-right:30px;
-    	}
-    </style>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-	   <a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible"></a>
-	</header>
-	<div class="mui-content main" >
-		<div id="logo">
-			<a class="navbar-brand">
-			<img class="mui-media-object" src="img/logo.png" >
-				</a>
-				<span>殆知阁</span>
-		</div>
-		<div id="search">
-			<div class="mui-input-row mui-search">
-				<input type="search" class="mui-input-speech mui-input-clear" placeholder="搜索" >
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>殆知阁</title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/mui.min.js"></script>
+		<script src="js/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/websql.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/reader.js"></script>
+		<link href="css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			.catalogLink {
+				font-size: 25px;
+				font-family: "宋体";
+				font-weight: bold;
+				margin: 3px;
+			}
+			
+			.mui-inner-wrap {
+				background-color: white;
+				text-align: center;
+				height: 100%;
+			}
+			
+			.line {
+				margin: 5px;
+			}
+			
+			#logo img {
+				border-radius: 8px;
+				height: 45px;
+				width: 45px;
+				margin-bottom: 5px;
+				margin-right: 10px;
+			}
+			
+			#logo {
+				font-family: "楷体";
+				margin: 0px;
+				margin-bottom: 30px;
+				margin-top: 40px;
+				font-size: 35px;
+				font-weight: bold;
+			}
+			
+			#search {
+				margin-bottom: 20px;
+				padding-left: 30px;
+				padding-right: 30px;
+			}
+			
+			#recentRead {
+				text-align: center;
+				display: none;
+				margin-top: 10px;
+			}
+			#offCanvasSide{
+				font-size:17px;
+				width:40%;
+				padding:10px;				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+			<div class="title" style="margin-bottom: 25px;">菜单</div>
+				<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+					<li class="mui-table-view-cell"><a mod="readRecord" class="localLink link">历史</a></li>
+					<li class="mui-table-view-cell"><a mod="bookMark" class="localLink link">书签</a></li>
+					<li class="mui-table-view-cell">笔记</li>
+					<li class="mui-table-view-cell">下载</li>
+					<li class="mui-table-view-cell"><a mod="about" class="localLink link">关于</a></li>
+					<li class="mui-table-view-cell"><a id='exit'>退出</a></li>
+				</ul>
+			</aside>
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+					<a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible" id="offCanvasShow"></a>
+				</header>
+				<div class="mui-content">
+					<div id="logo">
+						<img class="mui-media-object" src="img/logo.png">
+
+						<span>殆知阁</span>
+					</div>
+					<div id="search">
+						<input id='searchInput' type="search" onsearch="search()" class="mui-input-clear" placeholder="搜索">
+						<button id='searchBtn' class="mui-btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+
+						<br>
+						<lable><input type="radio" id="nameSearch" class="searchMod" name="searchMod" checked>书名</lable>
+						<lable><input type="radio" id="textSearch" class="searchMod" name="searchMod">全文</lable>
+
+					</div>
+					<div class="line">
+						<button type="button" class="mui-btn-primery catalogLink link" src="/易藏">易</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/儒藏">儒</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/道藏">道</button>
+					</div>
+					<div class="line">
+						<button type="button" class="mui-btn-primery catalogLink link" src="/佛藏">佛</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/子藏">子</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/史藏">史</button>
+					</div>
+					<div class="line">
+						<button type="button" class="mui-btn-primery catalogLink link" src="/集藏">集</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/医藏">医</button>
+					</div>
+					<div class="line">
+						<button type="button" class="mui-btn-primery catalogLink link" src="/艺藏">艺</button>
+						<button type="button" class="mui-btn-primery catalogLink link" src="/诗藏">诗</button>
+					</div>
+					<div id='recentRead'>最近阅读:
+						<a id="lastRecord" class='pageLink  link'></a>&nbsp;&nbsp;<a mod="readRecord" class="localLink link">更多>>></a> </div>
+				</div>
+				<!--<div id="menu"><a href="readRecorder.html" class=" link">阅读记录</a> 书签 笔记  我的下载  关于殆知阁  关闭</div>-->
+				<div class="mui-off-canvas-backdrop"></div>
 			</div>
 		</div>
-		<div class="line">
-			<button class="mui-btn-primery icon">易</button>
-			<button class="mui-btn-primery icon">儒</button>
-			<button class="mui-btn-primery icon">道</button>
-		</div>
-		<div class="line">
-			<button class="mui-btn-primery icon">佛</button>
-			<button class="mui-btn-primery icon">子</button>
-			<button class="mui-btn-primery icon">史</button>
-		</div>
-		<div class="line">
-			<button class="mui-btn-primery icon">集</button>
-			<button class="mui-btn-primery icon">医</button>
-		</div>
-		<div class="line">			
-			<button class="mui-btn-primery icon">艺</button>
-			<button class="mui-btn-primery icon">诗</button>
-		</div>
-	</div>
-	<script type="text/javascript">
-		var menu = null,
-			main = null;
-		var showMenu = false;
-		mui.plusReady(function(){
-			plus.screen.lockOrientation("portrait-primary");
-				main = plus.webview.currentWebview();
-				main.addEventListener('maskClick', closeMenu);
-			setTimeout(function() {
-					menu = mui.preload({
-						id: 'index-menu',
-						url: 'index-menu.html',
-						styles: {
-							left: 0,
-							width: '70%',
-							zindex: -1
-						},
-						show: {
-							aniShow: 'none'
-						}
-					});
-				}, 200);
-			var isInTransition = false;
-			/**
-			 * 显示侧滑菜单
-			 */
-			function openMenu() {
-				if (isInTransition) {
-					return;
-				}
-				if (!showMenu) {
-					//侧滑菜单处于隐藏状态，则立即显示出来；
-					isInTransition = true;
-					menu.setStyle({
-						mask: 'rgba(0,0,0,0)'
-					}); //menu设置透明遮罩防止点击
-					menu.show('none', 0, function() {
-						//主窗体开始侧滑并显示遮罩
-						main.setStyle({
-							mask: 'rgba(0,0,0,0.4)',
-							left: '70%',
-							transition: {
-								duration: 150
-							}
-						});
-						mui.later(function() {
-							isInTransition = false;
-							menu.setStyle({
-								mask: "none"
-							}); //移除menu的mask
-						}, 160);
-						showMenu = true;
-					});
-				}
-			};
-			/**
-			 * 关闭菜单
-			 */
-			function closeMenu() {
-				if (isInTransition) {
-					return;
-				}
-				if (showMenu) {
-					//关闭遮罩；
-					//主窗体开始侧滑；
-					isInTransition = true;
-					main.setStyle({
-						mask: 'none',
-						left: '0',
-						transition: {
-							duration: 200
-						}
-					});
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var showMenu = false;			
+			function closeOffCanvas(){
+				mui('#offCanvasWrapper').offCanvas('close');
 					showMenu = false;
-					//等动画结束后，隐藏菜单webview，节省资源；
-					mui.later(function() {
-						isInTransition = false;
-						menu.hide();
-					}, 300);
+			}
+			function openOffCanvas(){
+				mui('#offCanvasWrapper').offCanvas('close');
+					showMenu = true;
+					$('#searchInput').blur();
+			}
+			mui.plusReady(function() {
+				window.addEventListener('recordRefresh', function(e) {
+					lastReadRecord();
+					linkListen();
+				});
+				initDatabase();
+				linkListen();
+				mui('body').on('tap', '.localLink', closeOffCanvas);
+			});			
+			document.getElementById('offCanvasShow').addEventListener('tap', function() {
+				mui('#offCanvasWrapper').offCanvas('show');
+				showMenu = true;
+			});
+			mui.menu = function() {
+					if (showMenu) {
+						closeOffCanvas();
+					} else {
+						openffCanvas()
+					}
+				}
+				//首页返回键处理
+			var first = null;
+			mui.back = function() {
+				if (showMenu) {
+					closeOffCanvas();
+				} else {
+					//首次按键，提示‘再按一次退出应用’
+					if (!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if (new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
 				}
 			};
-			//点击左上角侧滑图标，打开侧滑菜单；
-			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
-				if (showMenu) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
+			document.getElementById('exit').addEventListener('tap', function() {
+				plus.runtime.quit();
 			});
-			//document.getElementsByClassName("icon").
-//			document.getElementById("link").onclick = function(){
-//				plus.webview.create("http://wenxian.fanren8.com/03/").show();
-//			};
-		});
-		//document.getElementsByClassName("icon").each()
-	</script>
-	
-</body>
+			
+		</script>
+
+	</body>
+
 </html>

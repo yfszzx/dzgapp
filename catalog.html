@@ -4,13 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/mui.min.js"></script>
-    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script src="js/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/websql.js"></script>
+     <script src="js/app.js"></script>
     <script type="text/javascript" charset="UTF-8">
-      	mui.init();
+      	 mui.init();
     </script>
+    <style>
+    	
+    	#page a{
+    		font:15px;
+    		margin-left:20px;    		
+    	}
+       	
+    </style>
 </head>
 <body>
+	<header class="mui-bar mui-bar-nav">
+		<a class='localLink link' mod='home' >
+			<span class='glyphicon glyphicon-home'></span>
+		</a>&nbsp;	
+	</header>
+	<div class="mui-content">
+	<div id='list'  name ='top'></div>
+	    <div id='page' class="smHr"></div>
+	    <div id='prePage'></div>
+	</div>
+	<script type="text/javascript">
+	mui.plusReady(function(){
+		plus.ui.createWaiting();
+		var self = plus.webview.currentWebview();
+		mui.get(self.src, function(txt){
+			$("#prePage").html(getCon(txt));
+			makeHeader();
+			makeCatalog();
+			linkListen();
+			plus.nativeUI.closeWaiting();
+			
+		});
+	});
 	
+	</script>
 </body>
 </html>
