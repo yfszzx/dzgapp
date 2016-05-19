@@ -11,6 +11,7 @@
 		<script src="js/js/jquery.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/self.js"></script>
 		<script src="js/websql.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/reader.js"></script>
@@ -73,17 +74,17 @@
 			<aside id="offCanvasSide" class="mui-off-canvas-left">
 			<div class="title" style="margin-bottom: 25px;">菜单</div>
 				<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
-					<li class="mui-table-view-cell"><a mod="readRecord" class="localLink link">历史</a></li>
-					<li class="mui-table-view-cell"><a mod="bookMark" class="localLink link">书签</a></li>
-					<li class="mui-table-view-cell">笔记</li>
-					<li class="mui-table-view-cell">下载</li>
-					<li class="mui-table-view-cell"><a mod="about" class="localLink link">关于</a></li>
-					<li class="mui-table-view-cell"><a id='exit'>退出</a></li>
+					<li class="mui-table-view-cell"><span mod="readRecord" class="localLink link">记录</span></li>
+					<li class="mui-table-view-cell"><span mod="bookMark" class="localLink link">书签</span></li>
+					<li class="mui-table-view-cell"><span mod="bookNote" class="localLink link">笔记</span></li>
+			<!--		<li class="mui-table-view-cell">下载</li>-->
+					<li class="mui-table-view-cell"><span mod="about" class="localLink link">关于</span></li>
+					<li class="mui-table-view-cell"><span id='exit'>退出</span></li>
 				</ul>
 			</aside>
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
-					<a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible" id="offCanvasShow"></a>
+					<span class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible" id="offCanvasShow"></span>
 				</header>
 				<div class="mui-content">
 					<div id="logo">
@@ -124,7 +125,7 @@
 				<!--<div id="menu"><a href="readRecorder.html" class=" link">阅读记录</a> 书签 笔记  我的下载  关于殆知阁  关闭</div>-->
 				<div class="mui-off-canvas-backdrop"></div>
 			</div>
-		</div>
+		</div>			
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			var showMenu = false;			

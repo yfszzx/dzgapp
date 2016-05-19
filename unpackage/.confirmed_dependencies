@@ -22,7 +22,8 @@
       "readRecorder.html",
       "bootstrap/fonts/glyphicons-halflings-regular.woff",
       "js/update.js",
-      "js/websql.js"
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": [
       "index-menu.html",
@@ -30,7 +31,9 @@
       "search.html",
       "page.html",
       "about.html",
-      "marks.html"
+      "marks.html",
+      "notes.html",
+      "readRecorder.html"
     ]
   },
   "index-menu.html": {
@@ -57,7 +60,9 @@
       "bootstrap/js/bootstrap.min.js",
       "bootstrap/fonts/glyphicons-halflings-regular.woff",
       "css/mui.css",
-      "js/app.js"
+      "js/app.js",
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": [
       "page.html",
@@ -78,11 +83,13 @@
       "css/app.css",
       "js/reader.js",
       "bootstrap/fonts/glyphicons-halflings-regular.ttf",
-      "js/websql.js"
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": [
       "catalog.html",
-      "index.html"
+      "index.html",
+      "editNote.html"
     ]
   },
   "search.html": {
@@ -95,7 +102,9 @@
       "bootstrap/js/bootstrap.min.js",
       "css/mui.css",
       "fonts/mui.ttf",
-      "bootstrap/fonts/glyphicons-halflings-regular.woff"
+      "bootstrap/fonts/glyphicons-halflings-regular.woff",
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": [
       "index.html",
@@ -129,7 +138,8 @@
       "bootstrap/js/bootstrap.min.js",
       "css/mui.css",
       "js/reader.js",
-      "js/websql.js"
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": [
       "page.html"
@@ -145,7 +155,9 @@
       "bootstrap/js/bootstrap.min.js",
       "bootstrap/fonts/glyphicons-halflings-regular.woff",
       "css/mui.css",
-      "js/reader.js"
+      "js/reader.js",
+      "js/websql.js",
+      "js/self.js"
     ],
     "refer": []
   },
@@ -160,10 +172,46 @@
       "bootstrap/js/bootstrap.min.js",
       "bootstrap/fonts/glyphicons-halflings-regular.woff",
       "css/mui.css",
-      "js/reader.js"
+      "js/reader.js",
+      "js/self.js"
     ],
     "refer": [
       "page.html"
     ]
+  },
+  "notes.html": {
+    "resources": [
+      "js/app.js",
+      "js/js/jquery.min.js",
+      "bootstrap/css/bootstrap.min.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "js/websql.js",
+      "bootstrap/js/bootstrap.min.js",
+      "bootstrap/fonts/glyphicons-halflings-regular.woff",
+      "css/mui.css",
+      "js/reader.js",
+      "js/self.js"
+    ],
+    "refer": [
+      "page.html"
+    ]
+  },
+  "editNote.html": {
+    "resources": [
+      "js/app.js",
+      "js/js/jquery.min.js",
+      "bootstrap/css/bootstrap.min.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "js/websql.js",
+      "bootstrap/js/bootstrap.min.js",
+      "bootstrap/fonts/glyphicons-halflings-regular.woff",
+      "js/self.js",
+      "css/mui.css",
+      "js/reader.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
   }
 }

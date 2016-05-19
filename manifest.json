@@ -7,7 +7,7 @@
 	"id": "H5427B242",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "国学大成",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.0",/*应用版本名称*/
+		"name": "1.0.1",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -223,7 +223,8 @@
 					"readRecorder.html",
 					"bootstrap/fonts/glyphicons-halflings-regular.woff",
 					"js/update.js",
-					"js/websql.js"
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [
 					"index-menu.html",
@@ -231,7 +232,8 @@
 					"search.html",
 					"page.html",
 					"about.html",
-					"marks.html"
+					"marks.html",
+					"notes.html"
 				],
 				"priority": 0
 			},
@@ -260,7 +262,9 @@
 					"bootstrap/js/bootstrap.min.js",
 					"bootstrap/fonts/glyphicons-halflings-regular.woff",
 					"css/mui.css",
-					"js/app.js"
+					"js/app.js",
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [
 					"page.html",
@@ -282,11 +286,13 @@
 					"css/app.css",
 					"js/reader.js",
 					"bootstrap/fonts/glyphicons-halflings-regular.ttf",
-					"js/websql.js"
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [
 					"catalog.html",
-					"index.html"
+					"index.html",
+					"editNote.html"
 				],
 				"priority": 0
 			},
@@ -300,7 +306,9 @@
 					"bootstrap/js/bootstrap.min.js",
 					"css/mui.css",
 					"fonts/mui.ttf",
-					"bootstrap/fonts/glyphicons-halflings-regular.woff"
+					"bootstrap/fonts/glyphicons-halflings-regular.woff",
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [
 					"index.html",
@@ -336,7 +344,8 @@
 					"bootstrap/js/bootstrap.min.js",
 					"css/mui.css",
 					"js/reader.js",
-					"js/websql.js"
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [
 					"page.html"
@@ -353,7 +362,9 @@
 					"bootstrap/js/bootstrap.min.js",
 					"bootstrap/fonts/glyphicons-halflings-regular.woff",
 					"css/mui.css",
-					"js/reader.js"
+					"js/reader.js",
+					"js/websql.js",
+					"js/self.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -369,11 +380,49 @@
 					"bootstrap/js/bootstrap.min.js",
 					"bootstrap/fonts/glyphicons-halflings-regular.woff",
 					"css/mui.css",
-					"js/reader.js"
+					"js/reader.js",
+					"js/self.js"
 				],
 				"refer": [
 					"page.html"
 				],
+				"priority": 0
+			},
+			"notes.html": {
+				"resources": [
+					"js/app.js",
+					"js/js/jquery.min.js",
+					"bootstrap/css/bootstrap.min.css",
+					"js/mui.min.js",
+					"css/app.css",
+					"js/websql.js",
+					"bootstrap/js/bootstrap.min.js",
+					"bootstrap/fonts/glyphicons-halflings-regular.woff",
+					"css/mui.css",
+					"js/reader.js",
+					"js/self.js"
+				],
+				"refer": [
+					"page.html"
+				],
+				"priority": 0
+			},
+			"editNote.html": {
+				"resources": [
+					"js/app.js",
+					"js/js/jquery.min.js",
+					"bootstrap/css/bootstrap.min.css",
+					"js/mui.min.js",
+					"css/app.css",
+					"js/websql.js",
+					"bootstrap/js/bootstrap.min.js",
+					"bootstrap/fonts/glyphicons-halflings-regular.woff",
+					"js/self.js",
+					"css/mui.css",
+					"js/reader.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

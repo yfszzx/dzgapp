@@ -1,21 +1,29 @@
 var rootUrl = "http://122.200.75.13";
 
 function pageClick() {
+	var sect = $(this).attr('sect');
+	var src = $(this).attr('src');
+	var obj = plus.webview.getWebviewById(src);
+	if(sect && obj){		
+		mui.fire(obj, 'goMark', sect);
+	}
 	mui.openWindow({
 		url: 'page.html',
-		id: $(this).attr('src'),
+		id: src,
 		extras: {
-			src: rootUrl + $(this).attr('src')
+			src: rootUrl + src,
+			section: sect
 		}
 	});
 }
 
-function catalogClick() {
+function catalogClick() {	
 	mui.openWindow({
 		url: 'catalog.html',
 		id: $(this).attr('src'),
 		extras: {
-			src: rootUrl + $(this).attr('src')
+			src: rootUrl + $(this).attr('src'),
+			
 		}
 	});
 }
@@ -44,6 +52,12 @@ function localClick() {
 			mui.openWindow({
 				url: 'marks.html',
 				id: 'marks.html'
+			});
+			break;
+		case 'bookNote':
+			mui.openWindow({
+				url: 'notes.html',
+				id: 'notes.html'
 			});
 			break;
 	}
@@ -93,11 +107,13 @@ function makePageLinkByRecord(record) {
 	var h = "<a class='pageLink link' ";
 	var sect = null;
 	if(typeof(record.section) != 'undefined'){
-		sect = " p" + record.page + " s" + record.section;
+		sect = " " + record.page + "页 " + (record.section + 1) + "段";
 	}
 	h += "src='" + path2page(record.path, record.page) + "'";
 	if(sect){
 		h += "sect='" + record.section +"'";
+	}else{
+		sect = "";
 	}
 	h +=">";	
 	h += getBookName(record.path) + sect +"</a>&nbsp;";
@@ -131,7 +147,7 @@ function makeHeader() {
 	if (typeof(pageIdx) != 'undefined' && pageIdx > 1) {
 		p = pageIdx;
 	}
-	$(".mui-bar-nav").append("<span class='title'>" + head.find(".active").html() + " " + p + "</span>");
+	$(".mui-bar-nav").append("<span class='title'>" + head.find(".active").html() + "</span> " + p );
 	head.remove();
 }
 
@@ -190,7 +206,7 @@ function makePage(txt) {
 		} else {
 			brFlag = false;
 		}
-		txt += "<span class='section'>" + arr[i] + "</span><br />";
+		txt += "<span class='section'><span class=\"section-content\">" + arr[i] + "</span></span><br />";
 	}
 	txt += arr[len - 1];
 	arr = [];
@@ -199,7 +215,9 @@ function makePage(txt) {
 function pageReady(){
 			plus.ui.createWaiting();
 			var self = plus.webview.currentWebview();
+			selfObj = self;
 			pageIdx = getPageIdx(self.src);
+			goMarkIdx = self.section;
 			mui.get(self.src, function(txt) {
 				pagePath = getName(self.src);
 				makeReadRecord(pagePath, pageIdx);
@@ -217,16 +235,26 @@ function pageReady(){
 					} else {
 						$("#page .container").append("<div class='docStat'>[完]</div>")
 					}
-					addMarks();
+					addMarksAndNotes();
 					linkListen();
 					plus.nativeUI.closeWaiting();
 					$().ready(function() {
-						mui('body').on('longtap', '.section', showList);
+						mui('body').on('doubletap', '.section', showList);
 						mui('body').on('tap', '#closeList', function() {
 							mui('#popover').popover('hide');
 						});
 						mui('body').on('tap', '#bookMark', makeMark);
 						mui('body').on('tap', '#bookNote', makeNote);
+						mui('body').on('tap', '#closeNoteMng', function() {
+							mui('#noteMng').popover('hide');
+						});
+						mui('body').on('tap', '#deleteNote', deleteNote);
+						mui('body').on('tap', '#editNote', makeNote);
+						mui('body').on('tap', '#goTop', function(){
+							location.hash = "";
+							location.hash = "#pagetop";
+						});
+						
 					});
 				});
 			});

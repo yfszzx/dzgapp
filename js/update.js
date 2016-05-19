@@ -19,11 +19,13 @@
  *
  */
 (function(w){
-var server="http://dzg.longmentcm.com/gxdc/update.json",//获取升级描述文件服务器地址
+//var server="http://www.dcloud.io/helloh5/update.json",
+var server="http://www.longmentcm.com/update.json",//获取升级描述文件服务器地址
+//var server="http://192.168.0.100/update.json",
 localDir="update",localFile="update.json",//本地保存升级描述目录和文件名
 keyUpdate="updateCheck",//取消升级键名
 keyAbort="updateAbort",//忽略版本键名
-checkInterval=604800000,//升级检查间隔，单位为ms,7天为7*24*60*60*1000=604800000, 如果每次启动需要检查设置值为0
+checkInterval=104800000,//升级检查间隔，单位为ms,7天为7*24*60*60*1000=604800000, 如果每次启动需要检查设置值为0
 dir=null;
 
 /**
@@ -32,9 +34,10 @@ dir=null;
  */
 function initUpdate(){
 	// 在流应用模式下不需要检测升级操作
-	if(navigator.userAgent.indexOf('StreamApp')>=0){
-		return;
-	}
+//	if(navigator.userAgent.indexOf('StreamApp')>=0){
+//		return;
+//	}
+//	
 	// 打开doc根目录
 	plus.io.requestFileSystem( plus.io.PRIVATE_DOC, function(fs){
 		fs.root.getDirectory( localDir, {create:true}, function(entry){
@@ -127,9 +130,10 @@ function getUpdateData(){
 	var xhr = new plus.net.XMLHttpRequest();
 	xhr.onreadystatechange = function () {
         switch ( xhr.readyState ) {
+        	
             case 4:
                 if ( xhr.status == 200 ) {
-                	// 保存到本地文件中
+                   	// 保存到本地文件中
                 	dir.getFile( localFile, {create:true}, function(fentry){
                 		fentry.createWriter( function(writer){
                 			writer.onerror = function(){
@@ -185,5 +189,4 @@ if ( w.plus ) {
 } else {
 	document.addEventListener("plusready", initUpdate, false );
 }
-
 })(window);

@@ -1,84 +1,133 @@
-.mui-bar{
-   		
-  		background-color: black;
-	}
-.mui-bar-nav{
-	font-size:15px;
-	height:36px;
-	padding:7px;
-	}
-.mui-bar-tab{  
-	font-size:14px;    		
-	height:30px;
-	padding:6px;
+.mui-bar {
+	background-color: black;
 }
-.mui-bar .mui-icon{
-	margin-top:-10px;
-	color:#AAA;
+
+.mui-bar-nav {
+	font-size: 15px;
+	height: 36px;
+	padding: 7px;
 }
-.mui-bar .glyphicon{
-	color:#AAA;
-	margin-right: 20px;
+
+.mui-bar-tab {
+	font-size: 14px;
+	height: 30px;
+	padding: 6px;
 }
-.mui-bar .link{
+
+.mui-bar .mui-icon {
+	margin-top: -10px;
 	color: #AAA;
 }
 
-.mui-bar-nav{
-	white-space:nowrap;  
+.mui-bar .glyphicon {
+	color: #AAA;
+	margin-right: 20px;
 }
-.mui-bar-nav .title{
-	color:white;
-	padding-left:20px;
+
+.mui-bar .link {
+	color: #AAA;
 }
-.docStat{
-	text-align:center;
+
+.mui-bar-nav {
+	white-space: nowrap;
+}
+
+.mui-bar-nav .title {
+	color: white;
+	padding-left: 20px;
+}
+
+.docStat {
+	text-align: center;
 	margin-bottom: 5px;
-	color:#888
+	color: #888
 }
-#prePage{
-		display: none;
-	}
-.mui-content{
-    		background-color: white;
-    	}
-#search .searchMod{
-	margin-left:10px;
-	margin-right:5px;
+
+#prePage {
+	display: none;
 }
-.smHr hr{
-	height:3px;
-	padding:0;
-	margin:2px;
+
+.mui-content {
+	background-color: white;
 }
-#search{
+
+#search .searchMod {
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.smHr hr {
+	height: 5px;
+	padding: 0;
+	margin: 8px;
+}
+
+#search {
 	text-align: center;
 }
-#searchInput{
-	width:70%;
-	height:35px;
-	margin-right:-2px;
-	border-radius:5px;
+
+#searchInput {
+	width: 70%;
+	height: 35px;
+	margin-right: -2px;
+	border-radius: 5px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
-#searchBtn{
-	height:35px;
+
+#searchBtn {
+	height: 35px;
 	margin-left: -2px;
-	border-radius:5px;
+	border-radius: 5px;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
-.removeTag{
-	color:#888;
-}
-.appIllustrate{
-	margin: 30px;
-	font-size:17px;
+
+.userTag {
+	color: #888;
 }
 
- p{
- 	text-indent:2em;
- 	line-height:150%;
- 	color:black;
- } 
+.appIllustrate {
+	margin: 30px;
+	font-size: 17px;
+}
+
+p {
+	text-indent: 2em;
+	line-height: 150%;
+	color: black;
+}
+
+.bookNote {
+	margin: 10px;
+}
+
+.booknote .glyphicon {
+	margin-right: 5px;
+}
+
+.booknote p {
+	text-indent: 0em;
+	color: #C9302C;
+	font-size: 12px;
+}
+
+.noteAbstract {
+	padding: 7px;
+	margin: 7px;
+	background-color: #EEE;
+	border-radius: 5px;
+}
+
+.noteAbstract p {
+	color: #255625;
+}
+
+.date {
+	font-size: 8px;
+	color: #999;
+}
+
+.mui-content {
+	padding: 10px;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet"/>
+    <script src="js/mui.min.js"></script>
+    <script src="js/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>   
+    <script src="js/websql.js"></script>
+    <script src="js/self.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/reader.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+       	mui.init();
+    </script> 
+    <style>
+    	.mui-content{
+    		background-color: lemonchiffon;
+    		height:100%;
+    	}
+    	#content{
+    		margin:10px;
+    	}
+     	#editer{
+    		height:400px;    
+    	}
+    	#subContent{
+    		display: none;
+    	}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<span class="title">笔记本</span>
+		<span class="glyphicon glyphicon-ok mui-pull-right" id="save"></span>
+		<span class="glyphicon glyphicon-remove mui-pull-right" id="giveup"></span>
+		
+	</header>
+	<div class="mui-content">
+		<div id="content"></div>
+		<textarea id="editer" placeholder="在此写入笔记" value=""></textarea>
+	</div>	
+	<script type="text/javascript">
+	var content;
+	var subContent;
+	var self;
+	var oldBack;
+	mui.plusReady(function(){	
+			oldBack = mui.back;
+			self = plus.webview.currentWebview(); 
+			content = self.content;
+			$("#editer").val(self.note);
+			var abs="<h5>《" + self.bookname + "》</h5>...<br>";
+			if(content.length < 100){
+				$("#content").html(abs + content + "<br>");	
+			}else{
+				$("#content").html(abs + content.substr(0,80) + "<span id=\"omit\">...</span>"
+				+ " <a id=\"spread\" type=\"button\" class=\"mui-pull-right\">展开</a><br><br>");
+				subContent = content.substr(80); 
+			}
+			$().ready(function(){
+				mui('body').on('tap', '#giveup', function(){
+					if($.trim($("#editer").val()) != $.trim(self.note)){
+					mui.confirm("是否放弃当前编辑的内容?", "",["确定", "取消"], function(res){
+							if(res.index == 0 ){
+								oldBack();							
+							}
+							
+					});
+					}else{
+						oldBack();
+					}
+					
+				});
+				mui('body').on('tap', '#save', function(){
+					saveNote($("#editer").val());					
+				});
+				mui('body').on('tap', '#spread', function(){
+					var obj = $("#subContent");
+					if(obj.length > 0){
+						obj.slideUp('fast',function(){
+							$(this).remove();
+							$("#omit").show();
+							$("#spread").html("展开");
+						});
+					}else{
+						$(this).before("<sapn id=\"subContent\" >" + subContent + "</span>");
+						$("#omit").hide();
+						$().ready(function () {
+							$("#subContent").slideDown('fast',function(){
+								$("#spread").html("收起");
+							});
+						});
+						
+					}
+					
+					
+				});				
+			});
+			
+			mui.back = function() {
+					if($.trim($("#editer").val()) != $.trim(self.note)){
+						mui.confirm("是否保存当前内容?", "",["保存", "不保存"], function(res){
+							if(res.index == 0 ){
+								saveNote($("#editer").val());								
+							}else{
+								oldBack();
+							}
+						})
+					}else{
+						oldBack();
+					}
+				}
+	});	
+	</script>	
+</body>
+</html>

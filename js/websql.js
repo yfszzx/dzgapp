@@ -1,8 +1,9 @@
 var webSql = {
 	debug: true,
-	open: function(name, size) {
+	open: function(name, size, edition) {
 		var db_size = size ? size : 2;
-		return openDatabase(name, '1.0', 'db_test', db_size * 1024 * 1024);
+		var ed = edition ? edition : "1.0";
+		return openDatabase(name, edition, 'db_test', db_size * 1024 * 1024);
 	},
 	query: function(db, sql, callback) {
 		db.transaction(function(tx) {
@@ -39,9 +40,9 @@ var webSql = {
 	},
 	dbName: {}
 }
-var dataBase = function(table, dbname, size) {
+var dataBase = function(table, dbname, size, edition) {
 	if (typeof(webSql.dbName[dbname]) == 'undefined') {
-		this.db = webSql.open(dbname, size);
+		this.db = webSql.open(dbname, size, edition);
 		webSql.dbName[dbname] = this.db;
 	} else {
 		this.db = webSql.dbName[dbname];

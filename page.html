@@ -9,21 +9,22 @@
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/app.css" rel="stylesheet" />
 		<script src="js/mui.min.js"></script>
-		<script src="js/js/jquery.min.js"></script>
+		<script src="js/js/jquery.min.js"></script>		
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script src="js/websql.js"></script>
+		<script src="js/self.js"></script>
+		<script src="js/websql.js"></script>		
 		<script src="js/app.js"></script>
 		<script src="js/reader.js"></script>
 		<script type="text/javascript" charset="UTF-8">
 			mui.init({
 				gestureConfig: {
 					tap: true, //默认为true
-					longtap: true, //默认为false
+					doubletap: true, //默认为false
 				}
 			});
 		</script>
 		<style type="text/css">
-			#popover {
+			.mui-popover {
 				position: fixed;
 				top: 100px;
 				width: 60%;
@@ -41,22 +42,33 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class='localLink link' mod='home'>
+			<span class='localLink link' mod='home' >
 				<span class='glyphicon glyphicon-home'></span>
-			</a>&nbsp; </header>
+			</span>
+			</header>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-pull-right" href="#top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+			<span class="mui-pull-right" id="goTop"><span class="glyphicon glyphicon-arrow-up"></span></span>
 		</nav>
 		<div class="mui-content">
-			<div id='list' name='top'></div>
-			<div id='page'></div>
+			<a name='pagetop'></a>
+			<div id='list' ></div>
+			<div id='page'>
+				
+			</div>
 			<div id='prePage'></div>
 		</div>
 		<div id="popover" class="mui-popover">
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell"><a id="bookMark">书签</a></li>
-				<li class="mui-table-view-cell"><a id="bookNote">笔记</a></li>
-				<li class="mui-table-view-cell"><a id="closeList">关闭</a></li>
+				<li class="mui-table-view-cell" id="bookMark"><span ><span class="glyphicon glyphicon-tags userTag"></span>&nbsp;&nbsp;插入书签</span></li>
+				<li class="mui-table-view-cell" id="bookNote"><span ><span class="glyphicon glyphicon-pencil  userTag"></span>&nbsp;&nbsp;添加笔记</span></li>
+				<li class="mui-table-view-cell" id="closeList"><span><span class="glyphicon glyphicon-off  userTag"></span>&nbsp;&nbsp;取消</span></li>
+			</ul>
+		</div>
+		<div id="noteMng" class="mui-popover">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="editNote"><span ><span class="glyphicon glyphicon-edit  userTag"></span>&nbsp;&nbsp;修改笔记</span></li>
+				<li class="mui-table-view-cell" id="deleteNote"><span ><span class="glyphicon glyphicon-remove-sign  userTag"></span>&nbsp;&nbsp;删除笔记</span></li>
+				<li class="mui-table-view-cell" id="closeNoteMng"><span ><span class="glyphicon glyphicon-off  userTag"></span>&nbsp;&nbsp;取消</span></li>					
 			</ul>
 		</div>
 	</body>
@@ -64,10 +76,17 @@
 		var pageIdx;
 		var sectionIdx;
 		var pagePath;
+		var selfObj;
+		var goMarkIdx =null;
 		mui.plusReady(pageReady);
 		window.addEventListener('markRefresh', function() {
 			$(".bookmark").remove();
-			addMarks();
+			$(".booknote").remove();
+			$(".AMark").remove();
+			addMarksAndNotes();
+		});
+		window.addEventListener('goMark', function(sect) {
+			goMark(sect.detail);
 		});
 	</script>
 
